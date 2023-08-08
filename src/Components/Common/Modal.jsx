@@ -13,35 +13,39 @@ const CustomModal = ({ children, isOpen, onSubmit, close, onClick, title, fullWi
   };
 
   const handleSubmit = () => {
-      setIsOpenModal(false);
+      setIsOpenModal(!isOpenModal);
       onClick(false);
       onSubmit();  
   }
 
+  const handleModal = () => {
+    setIsOpenModal(!isOpenModal);
+  };
+
   return (
     <Modal
-      title={title}
-      visible={isOpenModal}
-      centered
+      // onOk={handleModal}
       onOk={handleSubmit}
-      onCancel={handleCancel}
-      close={close}
-      width={fullWidth ? '100%' : width ?? 800}
-      footer={[
-        <Button key="cancel" onClick={handleCancel}>
-          Cancel
-        </Button>,
-        <Button
-          key="save"
-          style={{
-            backgroundColor: '#2d5161',
-            color: '#fff',
-          }}
-          onClick={handleSubmit}
-        >
-          Save
-        </Button>,
-      ]}
+      open={isOpenModal}
+      onCancel={handleModal}
+      centered
+      title={title}
+      close={isOpenModal ? false : true}
+      // footer={[
+      //   <Button key="cancel" onClick={handleCancel}>
+      //     Cancel
+      //   </Button>,
+      //   <Button
+      //     key="save"
+      //     style={{
+      //       backgroundColor: '#2d5161',
+      //       color: '#fff',
+      //     }}
+      //     onClick={handleSubmit}
+      //   >
+      //     Save
+      //   </Button>,
+      // ]}
     >
       {children}
     </Modal>
