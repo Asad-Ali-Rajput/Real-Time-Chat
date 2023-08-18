@@ -25,7 +25,7 @@ function RoomSideBar() {
     // Update user's picture URL
   };
 
-  const handleUpdateName = (newName) => {
+  const handleUpdateName = (newName: any) => {
     // Update user's name
   };
 

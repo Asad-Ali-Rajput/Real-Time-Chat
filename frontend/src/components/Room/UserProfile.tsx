@@ -37,11 +37,11 @@ const Profile: React.FC<ProfileProps> = ({
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        const newPictureUrl = event.target.result as string;
+        const newPictureUrl = event.target?.result as string;
         setPictureUrl(newPictureUrl);
         onUpdatePicture(newPictureUrl); // Update picture URL in parent component if needed
       };
