@@ -1,4 +1,4 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { useUser } from '@/contexts/UserContext';
 import React, { useState } from 'react';
@@ -6,11 +6,7 @@ import { useRouter } from 'next/navigation';
 import { ClipLoader } from 'react-spinners';
 
 interface LoginProps {
-  values: {
-    email: string;
-    password: string;
-  };
-  setSubmitting: (isSubmitting: boolean) => void;
+  setUsername: (username: string) => void;
 }
 
 const LoginForm = () => {
@@ -28,7 +24,9 @@ const LoginForm = () => {
     password: Yup.string().required('Password is required').min(3).max(20),
   });
 
-  const onSubmit = async (values: any, { setSubmitting }:LoginProps) => {
+  const onSubmit = async (values: { email: string; password: string; }, formikHelpers: FormikHelpers<{ email: string; password: string; }>) => {
+    const { setSubmitting, resetForm } = formikHelpers;
+  
     setIsLoading(true);
     try {
       const response = await fetch('http://localhost:8080/login', {
@@ -38,7 +36,7 @@ const LoginForm = () => {
         },
         body: JSON.stringify(values),
       });
-
+  
       if (response.ok) {
         setUsername(values.email);
         router.push('/chat');
@@ -55,7 +53,7 @@ const LoginForm = () => {
 
   return (
     <div className="flex justify-center items-center h-full">
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit} validateOnBlur validateOnChange>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {({ isSubmitting }) => (
           <Form className="bg-gradient-to-br p-0.5 rounded-lg overflow-hidden from-green-400 to-blue-600">
             <div className="bg-slate-900 rounded-lg p-2">
