@@ -1,9 +1,17 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { useUser } from '@/contexts/UserContext';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ClipLoader } from 'react-spinners';
+
+interface FormValues {
+  firstname: string;
+  lastname: string;
+  email: string;
+  username: string;
+  password: string;
+};
 
 const SignupForm = () => {
   const { setUsername } = useUser();
@@ -26,7 +34,8 @@ const SignupForm = () => {
     password: Yup.string().required('Password is required').min(3).max(20),
   });
 
-  const onSubmit = async (values, { setSubmitting }) => {
+  const onSubmit = async (values: FormValues, formikHelpers: FormikHelpers<FormValues>) => {
+    const { setSubmitting, resetForm } = formikHelpers;
     setIsLoading(true);
     console.log(values)
     try {
