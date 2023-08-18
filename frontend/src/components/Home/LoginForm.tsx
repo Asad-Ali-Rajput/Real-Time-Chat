@@ -1,9 +1,14 @@
-import { Formik, Form, Field, ErrorMessage, FormikProps } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useUser } from '@/contexts/UserContext';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ClipLoader } from 'react-spinners';
+
+interface LoginProps {
+  values: any;
+  setSubmitting: () => void;
+}
 
 const LoginForm = () => {
   const { setUsername } = useUser();
@@ -20,7 +25,7 @@ const LoginForm = () => {
     password: Yup.string().required('Password is required').min(3).max(20),
   });
 
-  const onSubmit = async (values: any, { setSubmitting }: FormikProps<any>) => {
+  const onSubmit = async (values: any, { setSubmitting }:LoginProps) => {
     setIsLoading(true);
     try {
       const response = await fetch('http://localhost:8080/login', {
