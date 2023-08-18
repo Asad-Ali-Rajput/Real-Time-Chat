@@ -7,12 +7,12 @@ import { v4 as uuidv4 } from "uuid";
 
 function AddRoomPanel({ hideAddRoomPanel }: any) {
   const [name, setName] = useState<string>("");
-  const [chatroomID, setchatroomID] = useState<string>("");
+  const [chatroomID, setChatRoomID] = useState<string>("");
   const { myRooms, setMyRooms } = useRoom();
   const router = useRouter();
 
   useEffect(() => {
-    setchatroomID(uuidv4());
+    setChatRoomID(uuidv4());
   }, []);
 
   const handleSubmit = async (e: any) => {
