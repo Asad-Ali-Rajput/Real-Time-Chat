@@ -33,7 +33,6 @@ function AddRoomPanel({ hideAddRoomPanel }: any) {
         setMyRooms([
           ...myRooms,
           {
-            name,
             chatroomID,
           },
         ]);
