@@ -6,8 +6,11 @@ import { useRouter } from 'next/navigation';
 import { ClipLoader } from 'react-spinners';
 
 interface LoginProps {
-  values: any;
-  setSubmitting: () => void;
+  values: {
+    email: string;
+    password: string;
+  };
+  setSubmitting: (isSubmitting: boolean) => void;
 }
 
 const LoginForm = () => {
