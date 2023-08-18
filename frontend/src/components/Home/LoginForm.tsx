@@ -20,7 +20,7 @@ const LoginForm = () => {
     password: Yup.string().required('Password is required').min(3).max(20),
   });
 
-  const onSubmit = async (values, { setSubmitting }) => {
+  const onSubmit = async (values: any, { setSubmitting }) => {
     setIsLoading(true);
     try {
       const response = await fetch('http://localhost:8080/login', {
