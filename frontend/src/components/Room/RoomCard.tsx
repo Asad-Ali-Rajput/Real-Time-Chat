@@ -33,7 +33,7 @@ function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
           />
         ) : (
           <Avatar
-            name={room.name}
+            name={room.title}
             round={true}
             size="50"
             className="text-sm"
@@ -41,7 +41,7 @@ function RoomCard({ room, users }: { room: IRoom; users: string[] }) {
         )}
       </div>
       <div className="hidden sm:block">
-        <p className="font-medium line-clamp-1">{room.name}</p>
+        <p className="font-medium line-clamp-1">{room.title}</p>
         <p className="text-sm text-slate-400">
           <span className="text-xs">🟢</span> {room.participants} online
         </p>
