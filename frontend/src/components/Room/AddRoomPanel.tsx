@@ -6,13 +6,13 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { v4 as uuidv4 } from "uuid";
 
 function AddRoomPanel({ hideAddRoomPanel }: any) {
-  const [title, setTitle] = useState<string>("");
-  const [id, setID] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [chatroomID, setchatroomID] = useState<string>("");
   const { myRooms, setMyRooms } = useRoom();
   const router = useRouter();
 
   useEffect(() => {
-    setID(uuidv4());
+    setchatroomID(uuidv4());
   }, []);
 
   const handleSubmit = async (e: any) => {
@@ -24,8 +24,8 @@ function AddRoomPanel({ hideAddRoomPanel }: any) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          title,
-          id,
+          name,
+          chatroomID,
         }),
       });
 
@@ -33,12 +33,12 @@ function AddRoomPanel({ hideAddRoomPanel }: any) {
         setMyRooms([
           ...myRooms,
           {
-            title,
-            id,
+            title: name,
+            id: chatroomID,
           },
         ]);
         hideAddRoomPanel(true);
-        router.replace("/chat/" + id);
+        router.replace("/chat/" + chatroomID);
       } else {
         // Handle error cases
       }
@@ -71,7 +71,7 @@ function AddRoomPanel({ hideAddRoomPanel }: any) {
               <input
                 type="text"
                 id="name"
-                value={title}
+                value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="bg-gray-50 focus:outline-none  text-gray-900 sm:text-sm rounded-lg border focus:border-primary block w-full p-2.5 "
                 required={true}
@@ -87,7 +87,7 @@ function AddRoomPanel({ hideAddRoomPanel }: any) {
               <input
                 type="text"
                 id="chatroomID"
-                value={id}
+                value={chatroomID}
                 minLength={5}
                 onChange={(e) => setChatRoomID(e.target.value)}
                 className="bg-gray-50  focus:outline-none text-gray-900 sm:text-sm rounded-lg border focus:border-primary block w-full p-2.5 "
