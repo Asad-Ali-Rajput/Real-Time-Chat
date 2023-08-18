@@ -21,7 +21,7 @@ function RoomSideBar() {
     status: "Online",
   };
 
-  const handleUpdatePicture = (newPictureUrl) => {
+  const handleUpdatePicture = (newPictureUrl: any) => {
     // Update user's picture URL
   };
 
