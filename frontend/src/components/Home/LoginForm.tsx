@@ -1,4 +1,4 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field, ErrorMessage, FormikProps } from 'formik';
 import * as Yup from 'yup';
 import { useUser } from '@/contexts/UserContext';
 import React, { useState } from 'react';
