@@ -24,7 +24,7 @@ const LoginForm = () => {
     password: Yup.string().required('Password is required').min(3).max(20),
   });
 
-  const onSubmit = async (values: { email: string; password: string; }, formikHelpers: FormikHelpers<{ email: string; password: string; }>) => {
+  const onSubmit = async (values: any, formikHelpers: FormikHelpers<{ email: string; password: string; }>) => {
     const { setSubmitting, resetForm } = formikHelpers;
   
     setIsLoading(true);
