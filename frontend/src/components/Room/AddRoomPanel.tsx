@@ -35,6 +35,7 @@ function AddRoomPanel({ hideAddRoomPanel }: any) {
           {
             title: name,
             id: chatroomID,
+            participants: 0,
           },
         ]);
         hideAddRoomPanel(true);
